@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WeexSDK.h"
 #import <UMPush/UMessage.h>
-
+#import <UMShare/UMShare.h>
+#import <UShareUI/UShareUI.h>
 #define kUmengNotification @"kUmengNotification"
 
 @interface vdUmengManager : NSObject
@@ -23,4 +24,5 @@
 
 - (void)setNotificationClickHandler:(WXModuleKeepAliveCallback)callback;
 
+- (void)addAlias:(NSDictionary *)params;
 @end

@@ -31,6 +31,7 @@
 
 - (void)init:(NSString*)key channel:(NSString*)channel launchOptions:(NSDictionary*)launchOptions
 {
+    
     NSString * deviceID =[UMConfigure deviceIDForIntegration];
     NSLog(@"集成测试的deviceID:%@", deviceID);
     //开发者需要显式的调用此函数，日志系统才能工作
@@ -39,8 +40,8 @@
     [UMConfigure setLogEnabled:YES];
     #endif
     [MobClick setScenarioType:E_UM_NORMAL];
-
-
+    // 加密传输
+//    [UMConfigure setEncryptEnabled:YES];
     [UMConfigure initWithAppkey:key channel:channel];
 
     // Push's basic setting
@@ -62,6 +63,12 @@
 {
     self.callback = callback;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationClick:) name:kUmengNotification object:nil];
+}
+
+- (void)addAlias:(NSDictionary *)params {
+    [UMessage addAlias:[params valueForKey:@"accountId"] type:@"DDRECYCLER" response:^(id  _Nullable responseObject, NSError * _Nullable error) {
+        
+    }];
 }
 
 - (void)notificationClick:(NSNotification *)notification
